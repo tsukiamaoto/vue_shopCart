@@ -5,7 +5,14 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  baseAssertUrl: 'http://localhost:3000/',
   server: {
+    hmr: {
+      path: '/',
+      host: 'localhost',
+      port: 3000,
+      protocol: 'ws'
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:8080/',
@@ -16,7 +23,8 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      resolvers: [ElementPlusResolver()],
+      dirs:['src/components'],
+      // resolvers: [ElementPlusResolver()],
     })
   ]
 })

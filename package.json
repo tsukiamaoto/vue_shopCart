@@ -8,10 +8,11 @@
   },
   "dependencies": {
     "axios": "^0.23.0",
-    "element-plus": "^1.1.0-beta.24",
+    "bootstrap": "^5.1.3",
     "js-cookie": "^3.0.1",
     "unplugin-vue-components": "^0.16.0",
-    "vue": "^3.2.16",
+    "vue": "^3.2.31",
+    "vue-material-design-icons": "^5.0.0",
     "vue-router": "4",
     "vuex": "^4.0.2"
   },
