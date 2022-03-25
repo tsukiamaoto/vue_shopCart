@@ -1,6 +1,7 @@
 <script>
 import { ref } from 'vue'
 import { mapState, mapActions } from 'vuex'
+import { router } from '../route'
 
 export default {
   setup() {
@@ -17,22 +18,42 @@ export default {
   }),
   methods: {
     ...mapActions('user', [
-      'signupUser'
-    ])
+      'signupUser',
+      'checkLogin',
+    ]),
+    redirect() {
+      router.back()
+    }
+  },
+  mounted(){
+    this.checkLogin()
+  },
+  watch: {
+    isLogined(val) {
+      if(val !== false) {
+        this.redirect()
+      }
+    }
   }
 }
 </script>
 
 <template>
+  <Appbar />
   <form @submit.prevent="onSubmit">
-    <label>帳號</label>
-    <input type="email" required v-model="username"/>
-    <label>密碼</label>
-    <input type="password" required v-model="password"/>
-    <button type="submit" @click="signupUser({username, password})">註冊</button>
+    <div class="form-floating mb-3">
+      <input id="floatingSignupInputAccount" class="form-control" type="email" placeholder="name@example.com" v-model="username"/>
+      <label for="floatingSignupInputAccount">帳號</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input id="floatingSignupInputPassword" class="form-control" type="password" placeholder="Password" v-model="password"/>
+      <label for="floatingSignupInputPassword">密碼</label>
+    </div>
+
+    <button class="btn btn-outline-primary" type="button" @click="signupUser({username, password})">註冊</button>
+    
   </form>
-  <p>帳號: {{ username }}</p>
-  <p>密碼: {{ password }}</p>
 </template>
 
 <style scoped>
@@ -47,15 +68,12 @@ form {
 
 label {
   color: #aaa;
-  display: inline-block;
-  margin: 25px 0 15px;
-  font-size: 0.6em;
-  text-transform: uppercase;
+  font-size: 0.7em;
   letter-spacing: 1px;
   font-weight: bold;
 }
 
-input, button {
+input {
   display: block;
   padding: 10px 6px;
   width: 100%;
@@ -65,4 +83,9 @@ input, button {
   color: #555;
 }
 
+.btn {
+  width: 100%;
+  margin: 0.5em 0;
+  font-size: 18px;
+}
 </style>

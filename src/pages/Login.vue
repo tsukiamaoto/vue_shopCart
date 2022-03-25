@@ -23,7 +23,7 @@ export default {
       'checkLogin'
     ]),
     redirect() {
-      router.push({ name: "Home" })
+      router.push({ name: 'Home' })
     }
   },
   mounted(){
@@ -35,18 +35,30 @@ export default {
         this.redirect()
       }
     }
+  },
+  components: {
+    Appbar,
   }
 }
 </script>
 
 <template>
+  <Appbar />
   <form @submit.prevent="onSubmit">
-    <label>帳號</label>
-    <input type="email" required v-model="username"/>
-    <label>密碼</label>
-    <input type="password" required v-model="password"/>
-    <el-button  class="btn" type="primary" round @click="loginUser({username, password})">登入</el-button>
-    <router-link to="/signup"><el-button class="btn" type="primary" round>註冊帳號</el-button></router-link>
+    <div class="form-floating mb-3">
+      <input id="floatingInputAccount" class="form-control" type="email" placeholder="name@example.com" v-model="username"/>
+      <label for="floatingInputAccount">帳號</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input id="floatingInputPassword" class="form-control" type="password" placeholder="Password" v-model="password"/>
+      <label for="floatingInputPassword">密碼</label>
+    </div>
+
+    <button class="btn btn-outline-primary" type="button" @click="loginUser({username, password})">登入</button>
+    <router-link to="/signup">
+      <button class="btn btn-outline-primary" type="button" >註冊帳號</button>
+    </router-link>
     
   </form>
 </template>
@@ -63,10 +75,7 @@ form {
 
 label {
   color: #aaa;
-  display: inline-block;
-  margin: 25px 0 15px;
-  font-size: 0.6em;
-  text-transform: uppercase;
+  font-size: 0.7em;
   letter-spacing: 1px;
   font-weight: bold;
 }
