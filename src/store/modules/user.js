@@ -7,10 +7,10 @@ const state = () => ({
 })
 
 const actions = {
-  checkLogin({ commit }) {
+  async checkLogin({ commit }) {
     if(Cookie.get('session-key') !== undefined) {
-      const isLogined = true
-      commit('loginUser', isLogined)
+      const result = await loginUser()
+      commit('loginUser', result.isLogined)
     }
   },
   async loginUser({ commit }, user) {
@@ -33,6 +33,9 @@ const mutations = {
     state.isLogined = isLogined
   },
   logoutUser(state, isLogined) {
+    state.isLogined = isLogined
+  },
+  checkLogin(state, isLogined) {
     state.isLogined = isLogined
   }
 }

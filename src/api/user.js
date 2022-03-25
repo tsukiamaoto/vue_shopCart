@@ -1,4 +1,4 @@
-const loginUser = (payload) => {
+const loginUser = (payload = {}) => {
   return fetch("/api/v1/user/login", {
     method: 'POST',
     headers: {"content-type": "application/json"},

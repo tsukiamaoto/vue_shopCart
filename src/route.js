@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from './pages/Login.vue'
 import Signup from './pages/Signup.vue'
 import Home from './pages/Home.vue'
+import Product from './pages/Product.vue'
 import Cookie from 'js-cookie'
 
 const routes = [
@@ -19,7 +20,14 @@ const routes = [
   {
     name: 'Signup',
     path: '/signup', 
-    component: Signup 
+    component: Signup ,
+    meta: { requiredAuth: true }
+  },
+  {
+    name: 'Product',
+    path: '/product',
+    component: Product,
+    meta: { requiredAuth: true }
   }
 ]
 
