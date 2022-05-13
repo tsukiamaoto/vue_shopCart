@@ -44,7 +44,7 @@ export default {
 
 <template>
   <Appbar />
-  <form @submit.prevent="onSubmit">
+  <form>
     <div class="form-floating mb-3">
       <input id="floatingInputAccount" class="form-control" type="email" placeholder="name@example.com" v-model="username"/>
       <label for="floatingInputAccount">帳號</label>
@@ -56,7 +56,7 @@ export default {
     </div>
 
     <button class="btn btn-outline-primary" type="button" @click="loginUser({username, password})">登入</button>
-    <router-link to="/signup">
+    <router-link :to="{ name: 'Signup'}">
       <button class="btn btn-outline-primary" type="button" >註冊帳號</button>
     </router-link>
     

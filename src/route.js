@@ -10,7 +10,6 @@ const routes = [
     name: 'Home',
     path: '/',
     component: Home,
-    meta: { requiredAuth: true }
   },
   {
     name: 'Login',
@@ -21,13 +20,11 @@ const routes = [
     name: 'Signup',
     path: '/signup', 
     component: Signup ,
-    meta: { requiredAuth: true }
   },
   {
     name: 'Product',
-    path: '/product',
+    path: '/product/:productId',
     component: Product,
-    meta: { requiredAuth: true }
   }
 ]
 

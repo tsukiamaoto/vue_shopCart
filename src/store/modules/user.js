@@ -20,8 +20,6 @@ const actions = {
   async logoutUser({ commit }) {
     const result = await logoutUser()
     commit('logoutUser', result.isLogined)
-
-    // Cookie.remove('session-key', {path: '/api'})
   },
   async signupUser({ commit }, user) {
     await signupUser(user)
@@ -41,7 +39,7 @@ const mutations = {
 }
 
 export default {
-  namespaced: true,
+  namespaced: true, // add to user package
   state,
   mutations,
   actions,
