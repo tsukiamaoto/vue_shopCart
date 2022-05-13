@@ -50,8 +50,9 @@ export default {
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <li class="btn nav-item me-2">
-              <button class="btn btn-outline-primary btn-sm">
-                <cart-outline-icon />
+              <button class="btn btn-outline-primary btn-sm position-relative">
+                <CartOutlineIcon />
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+99</span>
               </button>
             </li>
             <li class="nav-item dropdown">
@@ -74,12 +75,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
 .navbar-brand {
-  font-family: 'Hurricane', cursive;
-  
+  font-family: 'Hurricane', cursive; 
 }
 
 .navbar {
   height: 90px;
 }
-
 </style>

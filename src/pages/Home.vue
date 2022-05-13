@@ -1,17 +1,30 @@
 <script>
+import { mapActions, mapState } from 'vuex'
 import Appbar from '../components/appbar.vue'
 import TypesList from '../components/typesList.vue'
 import SortBar from '../components/sortBar.vue'
 import ShopitemList from '../components/shopitemList.vue'
-import Pagination from '../components/paginantion.vue'
 import BackToTop from '../components/backToTop.vue'
 export default {
+  computed: mapState({
+    products: state => state.product.products,
+    types: state => state.product.types,
+  }),
+  methods: {
+    ...mapActions('product', [
+      'getProducts',
+      'getTypes',
+    ])
+  },
+  mounted(){
+    this.getProducts()
+    this.getTypes()
+  },
   components: {
     Appbar, 
     TypesList,
     SortBar,
     ShopitemList,
-    Pagination,
     BackToTop,
   }
 }
@@ -24,19 +37,16 @@ export default {
     </div>
     <div class="shop-content row g-0">
       <div class="menu">
-        <TypesList/>
+        <TypesList :types="types"/>
       </div>  
       <div class="shopitem ps-3">
         <div class="row justify-content-end">
           <SortBar/>
         </div>
         <div class="row">
-          <ShopitemList />
+          <ShopitemList :products="products"/>
         </div>
       </div>
-    </div>
-    <div class="pagination">
-      <Pagination />
     </div>
     <div class="backToTop">
       <BackToTop />
@@ -57,10 +67,10 @@ export default {
     height: calc(100% - 56px);
   }
   .menu {
-    width: 160px;
+    width: 190px;
   }
   .shopitem {
-    width: calc(90% - 160px);
+    width: calc(90% - 190px);
     background: white;
   }
 </style>
