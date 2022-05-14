@@ -15,8 +15,10 @@ const actions = {
   },
   async getProducts({ commit }, query = {}) {
     query = {
+      c: query.column || "",
+      search_query: query.searchQuery || "",
       limit: query.limit || "",
-      sort_type: query.sort_type || "",
+      sort_type: query.sortType || "",
       order: query.order || "",
       next: query.next || "",
       prev: query.prev || "",

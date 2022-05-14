@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   methods: {
@@ -8,7 +8,7 @@ export default {
     ]),
     productsOrderByDate() {
       const query = {
-        sort_type: 'publicationDate'
+        sortType: 'publicationDate'
       }
 
       this.getProducts(query)
@@ -16,7 +16,7 @@ export default {
     },
     productsOrderByPriceFromLowToHigh() {
       const query = {
-        sort_type: 'price',
+        sortType: 'price',
         order: 'desc',
       }
 
@@ -25,7 +25,7 @@ export default {
     },
     productsOrderByPriceFromHighToLow() {
       const query = {
-        sort_type: 'price',
+        sortType: 'price',
         order: 'asc',
       }
 

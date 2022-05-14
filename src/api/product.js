@@ -13,13 +13,7 @@ const getProduct = (productId) => {
 }
 
 const getProducts = (query = {}) => {
-  return fetch("http://localhost:8080/api/v1/product?" + new URLSearchParams({
-    limit: query.limit,
-    sort_type: query.sort_type,
-    order: query.order,
-    next: query.next,
-    prev: query.prev,
-  }), {
+  return fetch("http://localhost:8080/api/v1/product?" + new URLSearchParams({ ...query }), {
     method: 'GET',
     headers: {"content-type": "application/json"},
   })
