@@ -1,5 +1,5 @@
 const loginUser = (payload = {}) => {
-  return fetch("http://localhost:8080/api/v1/user/login", {
+  return fetch("/api/v1/user/login", {
     method: 'POST',
     headers: {"content-type": "application/json"},
     body: JSON.stringify(payload)
@@ -14,7 +14,7 @@ const loginUser = (payload = {}) => {
 }
 
 const logoutUser = () => {
-  return fetch("http://localhost:8080/api/v1/user/logout", {
+  return fetch("/api/v1/user/logout", {
     method: 'POST',
     headers: {"content-type": "application/json"}
   })
@@ -28,7 +28,7 @@ const logoutUser = () => {
 }
 
 const signupUser = (payload) => {
-  return fetch("http://localhost:8080/api/v1/user/signup", {
+  return fetch("/api/v1/user/signup", {
     method: 'POST',
     headers: {"content-type": "application/json"},
     body: JSON.stringify(payload)

@@ -1,5 +1,5 @@
 const getProduct = (productId) => {
-  return fetch(`http://localhost:8080/api/v1/product/${productId}`, {
+  return fetch(`/api/v1/product/${productId}`, {
     method: 'GET',
     headers: {"content-type": "application/json"}
   })
@@ -13,7 +13,7 @@ const getProduct = (productId) => {
 }
 
 const getProducts = (query = {}) => {
-  return fetch("http://localhost:8080/api/v1/product?" + new URLSearchParams({ ...query }), {
+  return fetch("/api/v1/product?" + new URLSearchParams({ ...query }), {
     method: 'GET',
     headers: {"content-type": "application/json"},
   })
@@ -27,7 +27,7 @@ const getProducts = (query = {}) => {
 }
 
 const getTypes = () => {
-  return fetch("http://localhost:8080/api/v1/product/types", {
+  return fetch("/api/v1/product/types", {
     method: 'GET',
     headers: {"content-type": "application/json"},
   })
