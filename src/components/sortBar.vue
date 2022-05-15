@@ -5,35 +5,55 @@ export default {
   methods: {
     ...mapActions('product', [
       'getProducts',
+      'reset',
     ]),
     productsOrderByDate() {
+      // has to set default on next and prev because next and prev are previos record
+      const params = Object.fromEntries(new URLSearchParams(location.search)) 
       const query = {
-        sortType: 'publicationDate'
+        ...params,
+        next: "",
+        prev:"",
+        sort_type: 'publicationDate'
       }
-
+      this.reset()
       this.getProducts(query)
       this.changeUrlWithQuery(query)
     },
     productsOrderByPriceFromLowToHigh() {
+      // has to set default on next and prev because next and prev are previos record
+      const params = Object.fromEntries(new URLSearchParams(location.search)) 
       const query = {
-        sortType: 'price',
+        ...params,
+        next: "",
+        prev:"",
+        sort_type: 'price',
         order: 'desc',
       }
 
+      this.reset()
       this.getProducts(query)
       this.changeUrlWithQuery(query)
     },
     productsOrderByPriceFromHighToLow() {
+      // has to set default on next and prev because next and prev are previos record
+      const params = Object.fromEntries(new URLSearchParams(location.search)) 
       const query = {
-        sortType: 'price',
+        ...params,
+        next: "",
+        prev:"",
+        sort_type: 'price',
         order: 'asc',
       }
-
+      
+      this.reset()
       this.getProducts(query)
       this.changeUrlWithQuery(query)
     },
-    changeUrlWithQuery(query) {
-      this.$router.replace({ name: 'Home', query: {...query}})
+    changeUrlWithQuery(query = {}) {
+      this.$router.replace({ name: 'Home', query: {
+        ...query,
+      }})
     }
   }
 }

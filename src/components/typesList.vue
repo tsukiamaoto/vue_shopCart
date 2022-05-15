@@ -1,10 +1,13 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  props: ['types'],
+  props: {
+    types: Array,
+  },
   methods: {
     ...mapActions('product', [
-      'getProducts'
+      'getProducts',
+      'reset'
     ]),
     isExistedChild(parent, childs) {
       let isExisted = false
@@ -16,21 +19,23 @@ export default {
       return isExisted
     },
     queryBookType(bookType) {
+      const params = Object.fromEntries(new URLSearchParams(location.search)) 
       const query = {
+        ...params,
         column: 'types', 
-        searchQuery: bookType,
+        search_query: bookType,
       }
 
+      this.reset()
       this.getProducts(query)
       this.changeUrlWithQuery(query)
     },
-    changeUrlWithQuery(query) {
+    changeUrlWithQuery(query = {}) {
       this.$router.replace({ name: 'Home', query: {
-        c: quey.column,
-        search_query: query.searchQuery,
+        ...query,
       }})
     }
-  }
+  },
 }
 </script>
 <template>
@@ -42,7 +47,7 @@ export default {
       :id="'MainTypeMenuButton_' + index_0" data-bs-toggle="dropdown" aria-expanded="false"
       v-on:click="queryBookType(type_0.name)">
         {{type_0.name}}
-        <nobr v-show="isExistedChild(type_0, types[1])">&raquo;</nobr>
+        <span v-show="isExistedChild(type_0, types[1])">&raquo;</span>
       </button>
 
       <ul class="dropdown-content dropdown-menu"     
@@ -53,7 +58,7 @@ export default {
           <a class="dropdown-item"
             v-on:click="queryBookType(type_1.name)">
             {{type_1.name}} 
-            <nobr v-show="isExistedChild(type_1, types[2])">&raquo;</nobr>
+            <span v-show="isExistedChild(type_1, types[2])">&raquo;</span>
           </a>
 
           <ul class="dropdown-menu dropdown-submenu"
@@ -106,4 +111,5 @@ display: inline-block;
 /*Without this, clicking will make it sticky*/
 pointer-events: none;
 }
+
 </style>
