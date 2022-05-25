@@ -17,7 +17,7 @@ const actions = {
   },
   async getProducts({ commit }, query = {}) {
     query = {
-      c: query.column || "",
+      c: query.c || "",
       search_query: query.search_query || "",
       limit: query.limit || "",
       sort_type: query.sort_type || "",

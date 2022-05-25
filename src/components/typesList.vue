@@ -22,7 +22,7 @@ export default {
       const params = Object.fromEntries(new URLSearchParams(location.search)) 
       const query = {
         ...params,
-        column: 'types', 
+        c: 'types', 
         search_query: bookType,
       }
 
@@ -79,7 +79,7 @@ export default {
 </template>
 
 <style scoped>
-.menu:hover .dropdown-content {
+.list-group-item:hover .dropdown-content {
   display: block;
   position: absolute;
   left: 100%;

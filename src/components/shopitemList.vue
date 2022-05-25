@@ -1,6 +1,18 @@
 <script>
 export default {
-  props: ['products']
+  props: ['products'],
+  methods: {
+    isExistedImage: function(product) {
+      return product.categories.length > 0 && 
+            product.categories[0].images.length > 0 &&
+            product.categories[0].images.find(img => img != '')
+    },
+    getImage: function(imgs) {
+      const mainImage = imgs.find(img => img != '')
+      
+      return mainImage
+    },
+  }
 }
 </script>
 
@@ -10,8 +22,8 @@ export default {
       <div class="col-md-2">
         <router-link class="link" :to="{ name: 'Product', params: { productId: product.id } }">
           <img class="img rounded float-start"
-            v-if="product.categories[0].images.length > 1"
-            :src="product.categories[0].images[1]"
+            v-if="isExistedImage(product)"
+            :src="getImage(product.categories[0].images)"
             alt="image"
             loading="lazy"
           />
@@ -28,7 +40,7 @@ export default {
           <p class="name">{{product.name}}</p>
         </router-link>
       </div>
-      <div class="col-md-3  d-flex align-content-start">
+      <div class="col-md-3  d-flex align-content-start" v-if="product.categories.length > 0">
         $ {{product.categories[0].price}}
       </div>
     </div>
